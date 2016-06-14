@@ -63,41 +63,68 @@ namespace TaskyAndroid
 			// aapt resource value: 0x7f050000
 			public const int AddButton = 2131034112;
 			
-			// aapt resource value: 0x7f05000b
-			public const int CancelDeleteButton = 2131034123;
-			
-			// aapt resource value: 0x7f050003
-			public const int NameLabel = 2131034115;
-			
-			// aapt resource value: 0x7f050004
-			public const int NameText = 2131034116;
-			
-			// aapt resource value: 0x7f050005
-			public const int NotesLabel = 2131034117;
-			
-			// aapt resource value: 0x7f050006
-			public const int NotesText = 2131034118;
-			
-			// aapt resource value: 0x7f050007
-			public const int RewardLabel = 2131034119;
-			
-			// aapt resource value: 0x7f050008
-			public const int RewardText = 2131034120;
-			
-			// aapt resource value: 0x7f05000a
-			public const int SaveButton = 2131034122;
-			
-			// aapt resource value: 0x7f050002
-			public const int TaskDetailsHeader = 2131034114;
-			
-			// aapt resource value: 0x7f050001
-			public const int TaskList = 2131034113;
-			
-			// aapt resource value: 0x7f050009
-			public const int chkDone = 2131034121;
+			// aapt resource value: 0x7f050015
+			public const int BackButton = 2131034133;
 			
 			// aapt resource value: 0x7f05000c
-			public const int lstItemTask = 2131034124;
+			public const int CancelDeleteButton = 2131034124;
+			
+			// aapt resource value: 0x7f050004
+			public const int NameLabel = 2131034116;
+			
+			// aapt resource value: 0x7f050005
+			public const int NameText = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int NotesLabel = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int NotesText = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int RewardLabel = 2131034120;
+			
+			// aapt resource value: 0x7f050009
+			public const int RewardText = 2131034121;
+			
+			// aapt resource value: 0x7f05000b
+			public const int SaveButton = 2131034123;
+			
+			// aapt resource value: 0x7f050003
+			public const int TaskDetailsHeader = 2131034115;
+			
+			// aapt resource value: 0x7f050002
+			public const int TaskList = 2131034114;
+			
+			// aapt resource value: 0x7f050011
+			public const int UserAddressLabel = 2131034129;
+			
+			// aapt resource value: 0x7f050012
+			public const int UserAddressText = 2131034130;
+			
+			// aapt resource value: 0x7f050013
+			public const int UserBalanceLabel = 2131034131;
+			
+			// aapt resource value: 0x7f050014
+			public const int UserBalanceText = 2131034132;
+			
+			// aapt resource value: 0x7f050001
+			public const int UserDetailButton = 2131034113;
+			
+			// aapt resource value: 0x7f05000e
+			public const int UserDetailsHeader = 2131034126;
+			
+			// aapt resource value: 0x7f05000f
+			public const int UserNameLabel = 2131034127;
+			
+			// aapt resource value: 0x7f050010
+			public const int UserNameText = 2131034128;
+			
+			// aapt resource value: 0x7f05000a
+			public const int chkDone = 2131034122;
+			
+			// aapt resource value: 0x7f05000d
+			public const int lstItemTask = 2131034125;
 			
 			static Id()
 			{
@@ -120,6 +147,9 @@ namespace TaskyAndroid
 			
 			// aapt resource value: 0x7f030002
 			public const int TaskListItem = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int UserDetails = 2130903043;
 			
 			static Layout()
 			{

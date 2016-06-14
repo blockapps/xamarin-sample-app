@@ -19,6 +19,7 @@ namespace TaskyAndroid.Screens
 		TodoItemListAdapter taskList;
 		List<TodoItem> tasks;
 		Button addTaskButton;
+		Button userDetailsButton;
 		ListView taskListView;
 		
 		protected override void OnCreate (Bundle bundle)
@@ -31,6 +32,7 @@ namespace TaskyAndroid.Screens
 			//Find our controls
 			taskListView = FindViewById<ListView> (Resource.Id.TaskList);
 			addTaskButton = FindViewById<Button> (Resource.Id.AddButton);
+			userDetailsButton = FindViewById<Button> (Resource.Id.UserDetailButton);
 
 			// wire up add task button handler
 			if(addTaskButton != null) {
@@ -38,7 +40,11 @@ namespace TaskyAndroid.Screens
 					StartActivity(typeof(TodoItemScreen));
 				};
 			}
-			
+			if(userDetailsButton != null) {
+				userDetailsButton.Click += (sender, e) => {
+					StartActivity(typeof(UserDetailScreen));
+				};
+			}
 			// wire up task click handler
 			if(taskListView != null) {
 				taskListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {

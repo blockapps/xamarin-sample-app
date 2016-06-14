@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <TextView
+      android:id="@+id/UserDetailsHeader"
+      android:text="User Details"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
+  <TextView
+      android:id="@+id/UserNameLabel"
+      android:text="Name:"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserDetailsHeader" />
+  <TextView
+      android:id="@+id/UserNameText"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserNameLabel" />
+  <TextView
+      android:id="@+id/UserAddressLabel"
+      android:text="Address:"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserNameText" />
+  <TextView
+      android:id="@+id/UserAddressText"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserAddressLabel" />
+  <TextView
+      android:id="@+id/UserBalanceLabel"
+      android:text="Balance:"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserAddressText" />
+  <TextView
+      android:id="@+id/UserBalanceText"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserBalanceLabel" />
+  <Button
+      android:id="@+id/BackButton"
+      android:text="Back"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/UserBalanceText" />
+</LinearLayout>
