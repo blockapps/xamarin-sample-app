@@ -36,12 +36,11 @@ namespace Tasky.Screens {
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new TodoItem()); };
 		    var image = UIImage.FromFile("gear.png");
-		    var size = new CGSize(image.Size.Width/2, image.Size.Height / 2);
+		    var size = new CGSize(image.Size.Width/2.5, image.Size.Height / 2.5);
 		    var scaleImaged = image.Scale(size);
-            Task<User> userTask = Task.Run(() => User.GetUser("charlie", "test").Result);
-		    var user = userTask.Result;
+            
             var settingsButton = new UIBarButtonItem(scaleImaged, UIBarButtonItemStyle.Plain,
-               (sender, e) => { ShowUserDetails(user); });
+               (sender, e) => { ShowUserDetails(); });
             NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 		}
 		
@@ -54,8 +53,10 @@ namespace Tasky.Screens {
 			ActivateController(detailsScreen);
 		}
 
-        protected void ShowUserDetails(User user)
+        protected void ShowUserDetails()
         {
+            Task<User> userTask = Task.Run(() => User.GetUser("charlie", "test").Result);
+            var user = userTask.Result;
             userDetailDialog = new UserDetailDialog(user, 0);
             context = new BindingContext(this, userDetailDialog, "User Details");
             detailsScreen = new DialogViewController(context.Root, true);

@@ -40,7 +40,7 @@ namespace TaskyPortableLibrary
             var task = await Contract.GetContract("Task", id);
 
             //task has been deleted
-            if (!(task.Properties["stateInt"].Equals("4") || task.Properties["stateInt"].Equals("1")))
+            if (task.Properties["stateInt"].Equals("4") || task.Properties["stateInt"].Equals("1"))
             {
                 return null;
             }

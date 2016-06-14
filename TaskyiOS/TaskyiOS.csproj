@@ -71,7 +71,7 @@
   <ItemGroup>
     <Reference Include="BlockAppsSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\dev\xamarin-sdk\BlockAppsSDK\bin\Debug\BlockAppsSDK.dll</HintPath>
+      <HintPath>..\..\xamarin-sdk\BlockAppsSDK\bin\Debug\BlockAppsSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
