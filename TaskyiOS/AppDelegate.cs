@@ -46,14 +46,13 @@ namespace Tasky
 
 
 			// Create the database file
-			var sqliteFilename = "TodoItemDB.db3";
 			// we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
 			// (they don't want non-user-generated data in Documents)
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-			string libraryPath = Path.Combine (documentsPath, "..", "Library"); // Library folder
-			var path = Path.Combine(libraryPath, sqliteFilename);
+            //TodoContractMngr = new TodoContractManager("http://xamarin.centralus.cloudapp.azure.com:8000",
+            //    "http://xamarin.centralus.cloudapp.azure.com/eth/v1.2");
             TodoContractMngr = new TodoContractManager("http://40.117.237.163:8000",
-                "http://strato-dev4.blockapps.net/eth/v1.2");
+                "http://40.117.237.163/eth/v1.2");
 
             // create our nav controller
             navController = new UINavigationController ();

@@ -102,10 +102,7 @@ namespace Tasky.Screens {
 		
 		protected async Task PopulateTable()
 		{
-			//tasks = AppDelegate.Current.TodoManager.GetTasks().ToList ();
 			tasks = await AppDelegate.Current.TodoContractMngr.GetItems();
-//			var rows = from t in tasks
-//				select (Element)new StringElement ((t.Name == "" ? "<new task>" : t.Name), t.Notes);
 			// TODO: use this element, which displays a 'tick' when item is completed
 			var rows = from t in tasks
 				select (Element)new CheckboxElement ((t.Name == "" ? "<new task>" : t.Name), t.Done);

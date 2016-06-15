@@ -24,16 +24,11 @@ namespace TaskyAndroid
 		{
 			base.OnCreate();
 
-			var sqliteFilename = "TodoItemDB.db3";
-			string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			var path = Path.Combine(libraryPath, sqliteFilename);
-			conn = new SQLiteConnection(path);
-
-			//TodoManager = new TodoItemManager(conn);
+            //TodoContractMngr = new TodoContractManager("http://xamarin.centralus.cloudapp.azure.com:8000",
+            //    "http://xamarin.centralus.cloudapp.azure.com/eth/v1.2");
             TodoContractMngr = new TodoContractManager("http://40.117.237.163:8000",
-                "http://strato-dev4.blockapps.net/eth/v1.2");
-
-		}
+                "http://40.117.237.163/eth/v1.2");
+        }
 	}
 }
 
