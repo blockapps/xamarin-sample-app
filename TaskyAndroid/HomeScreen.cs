@@ -60,7 +60,7 @@ namespace TaskyAndroid.Screens
 			base.OnResume ();
 
 			//tasks = TaskyApp.Current.TodoManager.GetTasks();
-			tasks = ((Task<List<TodoItem>>) Task.Run(() => TaskyApp.Current.TodoContractMngr.GetItems())).Result;
+			tasks =  Task.Run(() => TaskyApp.Current.TodoContractMngr.GetItems()).Result;
 			
 			// create our adapter
 			taskList = new TodoItemListAdapter(this, tasks);
