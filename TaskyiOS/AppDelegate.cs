@@ -52,8 +52,6 @@ namespace Tasky
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 			string libraryPath = Path.Combine (documentsPath, "..", "Library"); // Library folder
 			var path = Path.Combine(libraryPath, sqliteFilename);
-			conn = new SQLiteConnection(path);
-			TodoManager = new TodoItemManager(conn);
             TodoContractMngr = new TodoContractManager("http://40.117.237.163:8000",
                 "http://strato-dev4.blockapps.net/eth/v1.2");
 
