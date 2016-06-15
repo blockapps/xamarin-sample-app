@@ -41,8 +41,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="BlockAppsSDK">
-      <HintPath>..\..\xamarin-sdk\BlockAppsSDK\bin\Debug\BlockAppsSDK.dll</HintPath>
+    <Reference Include="BlockAppsSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BlockAppsSDK.1.0.5-alpha\lib\portable45-net45+win8+wp8+wpa81\BlockAppsSDK.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
