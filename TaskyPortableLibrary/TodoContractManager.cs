@@ -76,6 +76,10 @@ namespace TaskyPortableLibrary
                 return await task.CallMethod("completeTask", new Dictionary<string, string>(), user, account.Address, 0);
             }
 
+            if (task.Properties["stateInt"].Equals("2"))
+            {
+                await task.CallMethod("completeTask", new Dictionary<string, string>(), user, account.Address, 0);
+            }
             var args = new Dictionary<string, string>();
             args.Add("reward", item.Reward.ToString());
             args.Add("name", item.Name);

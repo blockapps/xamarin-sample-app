@@ -73,7 +73,7 @@ namespace Tasky.Screens {
 		    currentItem.Reward = Int32.Parse(taskDialog.Reward);
 			// TODO: show the completion status in the UI
 			currentItem.Done = taskDialog.Done;
-			AppDelegate.Current.TodoManager.SaveTask(currentItem);
+			//AppDelegate.Current.TodoManager.SaveTask(currentItem);
 
 		    await AppDelegate.Current.TodoContractMngr.SaveItem(currentItem, user, user.Accounts.FirstOrDefault());
 			NavigationController.PopViewController (true);

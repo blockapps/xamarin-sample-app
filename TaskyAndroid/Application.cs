@@ -24,10 +24,8 @@ namespace TaskyAndroid
 		{
 			base.OnCreate();
 
-            //TodoContractMngr = new TodoContractManager("http://xamarin.centralus.cloudapp.azure.com:8000",
-            //    "http://xamarin.centralus.cloudapp.azure.com/eth/v1.2");
-            TodoContractMngr = new TodoContractManager("http://40.117.237.163:8000",
-                "http://40.117.237.163/eth/v1.2");
+            TodoContractMngr = new TodoContractManager("http://40.118.255.235:8000",
+                "http://40.118.255.235/eth/v1.2");
         }
 	}
 }

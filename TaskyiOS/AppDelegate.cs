@@ -45,14 +45,8 @@ namespace Tasky
 			window.MakeKeyAndVisible ();
 
 
-			// Create the database file
-			// we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
-			// (they don't want non-user-generated data in Documents)
-			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-            //TodoContractMngr = new TodoContractManager("http://xamarin.centralus.cloudapp.azure.com:8000",
-            //    "http://xamarin.centralus.cloudapp.azure.com/eth/v1.2");
-            TodoContractMngr = new TodoContractManager("http://40.117.237.163:8000",
-                "http://40.117.237.163/eth/v1.2");
+            TodoContractMngr = new TodoContractManager("http://40.118.255.235:8000",
+                "http://40.118.255.235/eth/v1.2");
 
             // create our nav controller
             navController = new UINavigationController ();
