@@ -24,6 +24,7 @@ using Visual Studio 2015
 <p align="center">
 <a href="https://www.youtube.com/watch?v=xEMApEug2do">
 <img border="0" alt="W3Schools" src="https://img.youtube.com/vi/xEMApEug2do/0.jpg" width="50%" height="30%">
+</a>
 </p>
 
 ## Acknowledgements
