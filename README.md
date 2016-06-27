@@ -16,6 +16,11 @@ Contracts on it.
 This project type requires Xamarin 3 (Xamarin Studio 5.x) or Visual Studio 2013
 with PCL support.
 
+## Prerequisites
+* [Bloc*](https://github.com/blockapps/bloc)
+
+<sub>* The sample app is using a remote bloc server (http://40.118.255.235:8000) and strato instance (http://40.118.255.235/eth/v1.2)  for interacting with the instance of the blockchain. You can run your own local bloc server that points to http://strato-dev4.blockapps.net/eth/v1.2 or your own strato instance. </sub>
+
 ## Getting Started
 
 Below is a link to a demo video of building the Xamarin Sample App to Android
