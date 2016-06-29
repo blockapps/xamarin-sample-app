@@ -38,10 +38,11 @@ namespace Tasky.Screens {
 		    var image = UIImage.FromFile("gear.png");
 		    var size = new CGSize(image.Size.Width/2.5, image.Size.Height / 2.5);
 		    var scaleImaged = image.Scale(size);
-            
             var settingsButton = new UIBarButtonItem(scaleImaged, UIBarButtonItemStyle.Plain,
                (sender, e) => { ShowUserDetails(); });
             NavigationItem.SetLeftBarButtonItem(settingsButton, false);
+
+		    AppDelegate.Current.TaskUser = Task.Run(() => AppDelegate.Current.TodoContractClient.SetUser("charlie", "test")).Result; 
 		}
 		
 		protected void ShowTaskDetails(TodoItem item)
@@ -55,9 +56,7 @@ namespace Tasky.Screens {
 
         protected void ShowUserDetails()
         {
-            Task<User> userTask = Task.Run(() => User.GetUser("charlie", "test").Result);
-            var user = userTask.Result;
-            userDetailDialog = new UserDetailDialog(user, 0);
+            userDetailDialog = new UserDetailDialog();
             context = new BindingContext(this, userDetailDialog, "User Details");
             detailsScreen = new DialogViewController(context.Root, true);
             ActivateController(detailsScreen);
@@ -65,7 +64,6 @@ namespace Tasky.Screens {
 
         public async Task SaveTask()
 		{
-		    var user = await User.GetUser("charlie", "test");
 
             context.Fetch (); // re-populates with updated values
 			currentItem.Name = taskDialog.Name;
@@ -73,9 +71,8 @@ namespace Tasky.Screens {
 		    currentItem.Reward = Int32.Parse(taskDialog.Reward);
 			// TODO: show the completion status in the UI
 			currentItem.Done = taskDialog.Done;
-			//AppDelegate.Current.TodoManager.SaveTask(currentItem);
 
-		    await AppDelegate.Current.TodoContractMngr.SaveItem(currentItem, user, user.Accounts.FirstOrDefault());
+		    await AppDelegate.Current.TodoContractClient.SaveItem(currentItem);
 			NavigationController.PopViewController (true);
 		}
 		public async Task DeleteTask ()
@@ -84,13 +81,22 @@ namespace Tasky.Screens {
                 //AppDelegate.Current.TodoManager.DeleteTask (currentItem.ID);
 		    if (currentItem.ID != null)
 		    {
-                var user = await User.GetUser("charlie", "test");
-		        await AppDelegate.Current.TodoContractMngr.DeleteItem(currentItem.ID, user, user.Accounts.FirstOrDefault());
+		        await AppDelegate.Current.TodoContractClient.DeleteItem(currentItem.ID);
 
 		    }
 
 			NavigationController.PopViewController (true);
 		}
+
+	    public async Task Login()
+	    {
+	        
+	    }
+
+	    public async Task Register()
+	    {
+	        
+	    }
 
 		public override void ViewWillAppear (bool animated)
 		{
@@ -102,7 +108,7 @@ namespace Tasky.Screens {
 		
 		protected async Task PopulateTable()
 		{
-			tasks = await AppDelegate.Current.TodoContractMngr.GetItems();
+			tasks = await AppDelegate.Current.TodoContractClient.GetItems();
 			// TODO: use this element, which displays a 'tick' when item is completed
 			var rows = from t in tasks
 				select (Element)new CheckboxElement ((t.Name == "" ? "<new task>" : t.Name), t.Done);
@@ -122,8 +128,7 @@ namespace Tasky.Screens {
 		public async Task DeleteTaskRow(int rowId)
 		{
 			//AppDelegate.Current.TodoManager.DeleteTask(tasks[rowId].ID);
-            var user = await User.GetUser("charlie", "test");
-            await AppDelegate.Current.TodoContractMngr.DeleteItem(tasks[rowId].ID, user, user.Accounts.FirstOrDefault());
+            await AppDelegate.Current.TodoContractClient.DeleteItem(tasks[rowId].ID);
 		}
 	}
 }

@@ -33,10 +33,15 @@ namespace TaskyAndroid.Screens
             userBalance = FindViewById<TextView>(Resource.Id.UserBalanceText);
             backButton = FindViewById<Button>(Resource.Id.BackButton);
 
-            Task<User> userTask = Task.Run(() => User.GetUser("charlie", "test").Result);
-            var user = userTask.Result;
+            if (TaskyApp.Current.TaskUser == null)
+            {
+                TaskyApp.Current.TaskUser = Task.Run(() => TaskyApp.Current.TodoContractClient.SetUser("charlie", "test")).Result;
+            }
+
+            var user = TaskyApp.Current.TaskUser;
+            var account = user.Accounts[user.DefaultAccount];
+
             userName.Text = user.Name;
-            var account = user.Accounts.FirstOrDefault();
             userAddress.Text = account != null ? account.Address : "";
             userBalance.Text = account != null ? (double.Parse(account.Balance)/ 1000000000000000000).ToString() : "";
 

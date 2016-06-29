@@ -13,11 +13,12 @@ namespace Tasky.ApplicationLayer
 	/// </summary>
 	public class UserDetailDialog 
 	{
-		public UserDetailDialog(User user, int accountIndex)
+		public UserDetailDialog()
 		{
+		    var user = AppDelegate.Current.TaskUser;
 			Name = user.Name;
-			Ether = (double.Parse(user.Accounts[accountIndex].Balance) / 1000000000000000000).ToString();
-		    Address = user.Accounts[accountIndex].Address;
+			Ether = (double.Parse(user.Accounts[user.DefaultAccount].Balance) / 1000000000000000000).ToString();
+		    Address = user.Accounts[user.DefaultAccount].Address;
 		}
 		
 		[Caption("")]

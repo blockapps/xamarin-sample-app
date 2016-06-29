@@ -58,9 +58,12 @@ namespace TaskyAndroid.Screens
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-
+		    if (TaskyApp.Current.TaskUser == null)
+		    {
+		        TaskyApp.Current.TaskUser = Task.Run( () => TaskyApp.Current.TodoContractClient.SetUser("charlie", "test")).Result;
+		    }
 			//tasks = TaskyApp.Current.TodoManager.GetTasks();
-			tasks =  Task.Run(() => TaskyApp.Current.TodoContractMngr.GetItems()).Result;
+			tasks =  Task.Run(() => TaskyApp.Current.TodoContractClient.GetItems()).Result;
 			
 			// create our adapter
 			taskList = new TodoItemListAdapter(this, tasks);
