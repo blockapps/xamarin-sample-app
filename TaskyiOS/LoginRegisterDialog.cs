@@ -33,6 +33,6 @@ namespace Tasky.ApplicationLayer
 		[Section ("")]
 		[OnTap ("Register")]
 		[Alignment (UITextAlignment.Center)]
-    	public string Registe;
+    	public string Register;
 	}
 }

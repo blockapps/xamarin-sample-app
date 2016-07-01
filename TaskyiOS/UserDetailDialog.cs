@@ -30,5 +30,9 @@ namespace Tasky.ApplicationLayer
 		[Caption("User Address is: ")]
 		public string Address{ get; set; }
 
-	}
+        [Section("")]
+        [OnTap("ChangeUser")]
+        [Alignment(UITextAlignment.Center)]
+        public string ChangeUser;
+    }
 }

@@ -23,8 +23,10 @@ namespace Tasky.Screens {
 		BindingContext context;
 		TodoItemDialog taskDialog;
 	    private UserDetailDialog userDetailDialog;
+	    private LoginRegisterDialog loginRegisterDialog;
 		TodoItem currentItem;
 		DialogViewController detailsScreen;
+	    private DialogViewController loginRegisterScreen;
 
 		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -42,7 +44,11 @@ namespace Tasky.Screens {
                (sender, e) => { ShowUserDetails(); });
             NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
-		    AppDelegate.Current.TaskUser = Task.Run(() => AppDelegate.Current.TodoContractClient.SetUser("charlie", "test")).Result; 
+		    //AppDelegate.Current.TaskUser = Task.Run(() => AppDelegate.Current.TodoContractClient.SetUser("charlie", "test")).Result; 
+		    if (AppDelegate.Current.TaskUser == null)
+		    {
+		        ShowLoginRegister();
+		    }
 		}
 		
 		protected void ShowTaskDetails(TodoItem item)
@@ -50,16 +56,26 @@ namespace Tasky.Screens {
 			currentItem = item;
 			taskDialog = new TodoItemDialog (currentItem);
 			context = new BindingContext (this, taskDialog, "Task Details");
-			detailsScreen = new DialogViewController (context.Root, true);
+			detailsScreen = new DialogViewController(context.Root, true);
 			ActivateController(detailsScreen);
 		}
 
-        protected void ShowUserDetails()
+        protected async Task ShowUserDetails()
         {
+            await AppDelegate.Current.TaskUser.Accounts[AppDelegate.Current.TaskUser.DefaultAccount]
+                .RefreshAccount();
             userDetailDialog = new UserDetailDialog();
             context = new BindingContext(this, userDetailDialog, "User Details");
             detailsScreen = new DialogViewController(context.Root, true);
             ActivateController(detailsScreen);
+        }
+
+        protected void ShowLoginRegister()
+        {
+            loginRegisterDialog = new LoginRegisterDialog();
+            context = new BindingContext(this, loginRegisterDialog, "Login Register");
+            loginRegisterScreen = new DialogViewController(context.Root, true);
+            ActivateController(loginRegisterScreen);
         }
 
         public async Task SaveTask()
@@ -90,20 +106,48 @@ namespace Tasky.Screens {
 
 	    public async Task Login()
 	    {
-	        
-	    }
+	        context.Fetch();
+	        AppDelegate.Current.TaskUser = await AppDelegate.Current.TodoContractClient
+                .SetUser(loginRegisterDialog.Name, loginRegisterDialog.Password);
+	        var user = AppDelegate.Current.TaskUser;
 
+	        if (userDetailDialog != null)
+	        {
+                //userDetailDialog.Name = user.Name;
+                //userDetailDialog.Address = user.Accounts[user.DefaultAccount].Address;
+                //userDetailDialog.Ether = (double.Parse(user.Accounts[user.DefaultAccount].Balance) / 1000000000000000000).ToString();
+                NavigationController.PopViewController(true);
+            }
+
+            NavigationController.PopViewController(true);
+
+	    }
 	    public async Task Register()
 	    {
-	        
+            context.Fetch();
+            AppDelegate.Current.TaskUser = await AppDelegate.Current.TodoContractClient
+                .RegisterUser(loginRegisterDialog.Name, loginRegisterDialog.Password);
+	        NavigationController.PopViewController(true);
+        }
+
+	    public void ChangeUser()
+	    {
+	        ShowLoginRegister();
 	    }
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			
-			// reload/refresh
-			PopulateTable();			
+
+		    if (AppDelegate.Current.TaskUser == null)
+		    {
+		        ShowLoginRegister();
+		    }
+		    else
+		    {
+                // reload/refresh
+                PopulateTable();			
+		    }
 		}
 		
 		protected async Task PopulateTable()

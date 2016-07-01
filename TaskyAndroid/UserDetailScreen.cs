@@ -18,6 +18,7 @@ namespace TaskyAndroid.Screens
     public class UserDetailScreen : Activity
     {
         Button backButton;
+        private Button changeUserButton;
         TextView userName;
         TextView userAddress;
         TextView userBalance;
@@ -32,10 +33,15 @@ namespace TaskyAndroid.Screens
             userAddress = FindViewById<TextView>(Resource.Id.UserAddressText);
             userBalance = FindViewById<TextView>(Resource.Id.UserBalanceText);
             backButton = FindViewById<Button>(Resource.Id.BackButton);
+            changeUserButton = FindViewById<Button>(Resource.Id.ChangeUserButton);
+
+            backButton.Click += (sender, e) => { Back(); };
+            changeUserButton.Click += (sender, e) => { StartActivity(typeof(LoginRegisterScreen)); }; 
 
             if (TaskyApp.Current.TaskUser == null)
             {
-                TaskyApp.Current.TaskUser = Task.Run(() => TaskyApp.Current.TodoContractClient.SetUser("charlie", "test")).Result;
+                StartActivity(typeof(LoginRegisterScreen));
+                return;
             }
 
             var user = TaskyApp.Current.TaskUser;
@@ -45,11 +51,20 @@ namespace TaskyAndroid.Screens
             userAddress.Text = account != null ? account.Address : "";
             userBalance.Text = account != null ? (double.Parse(account.Balance)/ 1000000000000000000).ToString() : "";
 
-
-            // button clicks 
-            backButton.Click += (sender, e) => { Back(); };
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            var task = Task.Run(() => TaskyApp.Current.TaskUser.Accounts[TaskyApp.Current.TaskUser.DefaultAccount].RefreshAccount());
+            task.Wait();
+            var user = TaskyApp.Current.TaskUser;
+            var account = user.Accounts[user.DefaultAccount];
+
+            userName.Text = user.Name;
+            userAddress.Text = account != null ? account.Address : "";
+            userBalance.Text = account != null ? (double.Parse(account.Balance) / 1000000000000000000).ToString() : "";
+        }
 
         void Back()
         {

@@ -60,16 +60,21 @@ namespace TaskyAndroid.Screens
 			base.OnResume ();
 		    if (TaskyApp.Current.TaskUser == null)
 		    {
-		        TaskyApp.Current.TaskUser = Task.Run( () => TaskyApp.Current.TodoContractClient.SetUser("charlie", "test")).Result;
+		        var loginRegister = new Intent(this, typeof(LoginRegisterScreen));
+		        StartActivity(loginRegister);
 		    }
-			//tasks = TaskyApp.Current.TodoManager.GetTasks();
-			tasks =  Task.Run(() => TaskyApp.Current.TodoContractClient.GetItems()).Result;
-			
-			// create our adapter
-			taskList = new TodoItemListAdapter(this, tasks);
+		    else
+		    {
+                //tasks = TaskyApp.Current.TodoManager.GetTasks();
+                tasks = Task.Run(() => TaskyApp.Current.TodoContractClient.GetItems()).Result;
 
-			//Hook up our adapter to our ListView
-			taskListView.Adapter = taskList;
+                // create our adapter
+                taskList = new TodoItemListAdapter(this, tasks);
+
+                //Hook up our adapter to our ListView
+                taskListView.Adapter = taskList;
+            }
+			
 		}
 	}
 }

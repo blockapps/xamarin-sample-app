@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlockAppsSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BlockAppsSDK.1.0.0-alpha2\lib\portable45-net45+win8+wp8+wpa81\BlockAppsSDK.dll</HintPath>
+      <HintPath>..\packages\BlockAppsSDK.2.0.0-beta1\lib\portable45-net45+win8+wp8+wpa81\BlockAppsSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -136,6 +136,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="HomeScreen.cs" />
+    <Compile Include="LoginRegisterScreen.cs" />
     <Compile Include="UserDetailScreen.cs" />
     <Compile Include="TodoItemScreen.cs" />
     <Compile Include="TodoItemListAdapter.cs" />
@@ -148,6 +149,9 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\UserDetails.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\LoginRegister.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
