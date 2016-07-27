@@ -58,15 +58,23 @@ namespace TaskyAndroid.Screens
 		protected override void OnResume ()
 		{
 			base.OnResume ();
+		    if (TaskyApp.Current.TaskUser == null)
+		    {
+		        var loginRegister = new Intent(this, typeof(LoginRegisterScreen));
+		        StartActivity(loginRegister);
+		    }
+		    else
+		    {
+                //tasks = TaskyApp.Current.TodoManager.GetTasks();
+                tasks = Task.Run(() => TaskyApp.Current.TodoContractClient.GetItems()).Result;
 
-			//tasks = TaskyApp.Current.TodoManager.GetTasks();
-			tasks =  Task.Run(() => TaskyApp.Current.TodoContractMngr.GetItems()).Result;
+                // create our adapter
+                taskList = new TodoItemListAdapter(this, tasks);
+
+                //Hook up our adapter to our ListView
+                taskListView.Adapter = taskList;
+            }
 			
-			// create our adapter
-			taskList = new TodoItemListAdapter(this, tasks);
-
-			//Hook up our adapter to our ListView
-			taskListView.Adapter = taskList;
 		}
 	}
 }

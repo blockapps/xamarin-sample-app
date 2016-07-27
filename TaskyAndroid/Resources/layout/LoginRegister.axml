@@ -14,43 +14,39 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/UserDetailsHeader" />
-  <TextView
-      android:id="@+id/UserNameText"
+  <EditText
+      android:id="@+id/LoginUserName"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/UserNameLabel" />
   <TextView
-      android:id="@+id/UserAddressLabel"
-      android:text="Address:"
+      android:id="@+id/UserPasswordLabel"
+      android:text="Password:"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/UserNameText" />
-  <TextView
-      android:id="@+id/UserAddressText"
+      android:layout_below="@+id/LoginUserName" />
+  <EditText
+      android:id="@+id/LoginUserPassword"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/UserAddressLabel" />
-  <TextView
-      android:id="@+id/UserBalanceLabel"
-      android:text="Balance:"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/UserAddressText" />
-  <TextView
-      android:id="@+id/UserBalanceText"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/UserBalanceLabel" />
+      android:layout_below="@+id/UserPasswordLabel" />
+  >
   <Button
-      android:id="@+id/BackButton"
+      android:id="@+id/LoginButton"
+      android:text="Login"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/LoginUserPassword" />
+  <Button
+      android:id="@+id/RegisterButton"
+      android:text="Register"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/LoginButton" />
+  <Button
+      android:id="@+id/LoginBackButton"
       android:text="Back"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/UserBalanceText" />
-  <Button
-      android:id="@+id/ChangeUserButton"
-      android:text="Change User"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/BackButton" />
+      android:layout_below="@+id/RegisterButton" />
 </LinearLayout>

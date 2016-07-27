@@ -33,7 +33,7 @@ namespace TaskyAndroid.Screens
             if (taskID != null)
             {
                 //task = TaskyApp.Current.TodoManager.GetTask(taskID);
-                Task<TodoItem> asyncTask = Task.Run(() => TaskyApp.Current.TodoContractMngr.GetItem(taskID));
+                Task<TodoItem> asyncTask = Task.Run(() => TaskyApp.Current.TodoContractClient.GetItem(taskID));
                 task = asyncTask.Result;
             }
 
@@ -72,8 +72,7 @@ namespace TaskyAndroid.Screens
             task.Done = doneCheckbox.Checked;
 
             //TaskyApp.Current.TodoManager.SaveTask(task);
-            var user = await User.GetUser("charlie", "test");
-            await TaskyApp.Current.TodoContractMngr.SaveItem(task, user, user.Accounts.FirstOrDefault());
+            await TaskyApp.Current.TodoContractClient.SaveItem(task);
 
             Finish();
         }
@@ -83,8 +82,7 @@ namespace TaskyAndroid.Screens
             if (task.ID != null)
             {
                 //TaskyApp.Current.TodoManager.DeleteTask(task.ID);
-                var user = await User.GetUser("charlie", "test");
-                await TaskyApp.Current.TodoContractMngr.DeleteItem(task.ID, user, user.Accounts.FirstOrDefault());
+                await TaskyApp.Current.TodoContractClient.DeleteItem(task.ID);
             }
             Finish();
         }

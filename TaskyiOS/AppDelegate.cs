@@ -6,6 +6,7 @@ using UIKit;
 using SQLite;
 using Tasky.PortableLibrary;
 using System.IO;
+using BlockAppsSDK.Users;
 using TaskyPortableLibrary;
 
 namespace Tasky 
@@ -30,9 +31,8 @@ namespace Tasky
 		UITableViewController homeViewController;
 
 		public static AppDelegate Current { get; private set; }
-		public TodoItemManager TodoManager { get; set; }
-        public TodoContractManager TodoContractMngr { get; set; }
-		SQLiteConnection conn;
+        public TodoContractClient TodoContractClient { get; set; }
+        public User TaskUser { get; set; }
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -45,7 +45,7 @@ namespace Tasky
 			window.MakeKeyAndVisible ();
 
 
-            TodoContractMngr = new TodoContractManager("http://40.118.255.235:8000",
+            TodoContractClient = new TodoContractClient("http://40.118.255.235:8000",
                 "http://40.118.255.235/eth/v1.2");
 
             // create our nav controller
