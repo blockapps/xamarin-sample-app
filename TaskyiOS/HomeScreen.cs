@@ -41,10 +41,9 @@ namespace Tasky.Screens {
 		    var size = new CGSize(image.Size.Width/2.5, image.Size.Height / 2.5);
 		    var scaleImaged = image.Scale(size);
             var settingsButton = new UIBarButtonItem(scaleImaged, UIBarButtonItemStyle.Plain,
-               (sender, e) => { ShowUserDetails(); });
+              async (sender, e) => { await ShowUserDetails(); });
             NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
-		    //AppDelegate.Current.TaskUser = Task.Run(() => AppDelegate.Current.TodoContractClient.SetUser("charlie", "test")).Result; 
 		    if (AppDelegate.Current.TaskUser == null)
 		    {
 		        ShowLoginRegister();
@@ -97,8 +96,8 @@ namespace Tasky.Screens {
                 //AppDelegate.Current.TodoManager.DeleteTask (currentItem.ID);
 		    if (currentItem.ID != null)
 		    {
-		        await AppDelegate.Current.TodoContractClient.DeleteItem(currentItem.ID);
-
+		        //await AppDelegate.Current.TodoContractClient.DeleteItem(currentItem.ID);
+                await AppDelegate.Current.TodoContractClient.DeleteItem(currentItem.ID);
 		    }
 
 			NavigationController.PopViewController (true);
@@ -107,17 +106,17 @@ namespace Tasky.Screens {
 	    public async Task Login()
 	    {
 	        context.Fetch();
-	        AppDelegate.Current.TaskUser = await AppDelegate.Current.TodoContractClient
+            AppDelegate.Current.TaskUser = await AppDelegate.Current.TodoContractClient
                 .SetUser(loginRegisterDialog.Name, loginRegisterDialog.Password);
-	        var user = AppDelegate.Current.TaskUser;
+            var user = AppDelegate.Current.TaskUser;
 
-	        if (userDetailDialog != null)
-	        {
-                //userDetailDialog.Name = user.Name;
-                //userDetailDialog.Address = user.Accounts[user.DefaultAccount].Address;
-                //userDetailDialog.Ether = (double.Parse(user.Accounts[user.DefaultAccount].Balance) / 1000000000000000000).ToString();
-                NavigationController.PopViewController(true);
-            }
+	        //if (userDetailDialog != null)
+	        //{
+         //       //userDetailDialog.Name = user.Name;
+         //       //userDetailDialog.Address = user.Accounts[user.DefaultAccount].Address;
+         //       //userDetailDialog.Ether = (double.Parse(user.Accounts[user.DefaultAccount].Balance) / 1000000000000000000).ToString();
+         //       NavigationController.PopViewController(true);
+         //   }
 
             NavigationController.PopViewController(true);
 
@@ -135,7 +134,7 @@ namespace Tasky.Screens {
 	        ShowLoginRegister();
 	    }
 
-		public override void ViewWillAppear (bool animated)
+		public override async void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 
@@ -146,8 +145,9 @@ namespace Tasky.Screens {
 		    else
 		    {
                 // reload/refresh
-                PopulateTable();			
-		    }
+
+                await PopulateTable();
+            }
 		}
 		
 		protected async Task PopulateTable()

@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlockAppsSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BlockAppsSDK.2.0.0-beta1\lib\portable45-net45+win8+wp8+wpa81\BlockAppsSDK.dll</HintPath>
+      <HintPath>..\packages\BlockAppsSDK.1.1.0-beta1\lib\portable45-net45+win8+wp8+wpa81\BlockAppsSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
