@@ -1,4 +1,4 @@
-DEPRECATED - see developers.blockapps.net for any BlockApps STRATO dev info
+# DEPRECATED - see developers.blockapps.net for any BlockApps STRATO dev info
 
 # BlockApps: Xamarin Sample App
 
