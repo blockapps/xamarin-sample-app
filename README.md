@@ -1,3 +1,5 @@
+DEPRECATED - see developers.blockapps.net for any BlockApps STRATO dev info
+
 # BlockApps: Xamarin Sample App
 
 The Xamarin Sample App is a simple cross-platform todo/task application that
